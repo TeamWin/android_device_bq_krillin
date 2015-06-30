@@ -18,11 +18,13 @@ TARGET_GLOBAL_CPPFLAGS += -mfpu=neon -mfloat-abi=softfp
 
 # Kernel
 TARGET_PREBUILT_KERNEL := device/bq/krillin/kernel
-BOARD_KERNEL_CMDLINE := 
-BOARD_KERNEL_BASE := 0x10000000
-BOARD_KERNEL_PAGESIZE := 2048
+BOARD_KERNEL_CMDLINE :=
 BOARD_CUSTOM_BOOTIMG_MK := device/bq/krillin/mkbootimg.mk
-BOARD_MKBOOTIMG_ARGS := --kernel_offset 0x00008000 --ramdisk_offset 0x01000000 --second_offset 0x00f00000 --tags_offset 0x00000100
+BOARD_MKBOOTIMG_ARGS := --pagesize 2048 --base 0x80000000 --kernel_offset 0x00008000 --ramdisk_offset 0x04000000 --second_offset 0x00f00000 --tags_offset 0x00000100
+
+# Partitions
+BOARD_BOOTIMAGE_PARTITION_SIZE := 0x0000000001400000
+BOARD_RECOVERYIMAGE_PARTITION_SIZE := 0x0000000001400000
 
 # USB Mounting
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/mt_usb/musb-hdrc.0/gadget/lun0/file
